@@ -1,5 +1,13 @@
 # Business Card Scanner
 
+<table>
+  <tr>
+    <td><img src="images/1.png" height="500px"></td>
+    <td><img src="images/2.png" height="500px"></td>
+    <td><img src="images/3.png" height="500px"></td>
+  </tr>
+</table>
+
 ## Overview
 The Business Card Scanner is a mobile application designed to streamline the process of managing and organizing business cards. With this app, users can effortlessly digitize their collection of business cards, store them securely, and easily access the information whenever needed. 
 
