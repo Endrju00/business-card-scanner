@@ -21,3 +21,6 @@ Please note that this repository contains the Minimum Viable Product (MVP) versi
 
 ## Design
 The user interface and experience design of the Business Card Scanner is available on [Figma](https://www.figma.com/file/HvznxP0UFFemlnwuCDedia/Business-cars-scanner?type=design&mode=design&t=pj0RZbzJqRokMlk3-1).
+
+## Documentation
+The documentation of Event Storming and application architecture for the Business Card Scanner is available on [Miro](https://miro.com/app/board/uXjVKUMcItU=/?share_link_id=850017017269).
