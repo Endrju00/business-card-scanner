@@ -1,3 +1,4 @@
 library settings;
 
-export 'src/core/pages/pages.dart';
+export 'src/core/core.dart';
+export 'src/features/locales/locales.dart';
