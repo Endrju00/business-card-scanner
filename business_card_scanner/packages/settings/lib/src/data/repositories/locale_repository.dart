@@ -8,7 +8,7 @@ import '../../domain/repositories/locale_repository_interface.dart';
 import '../datasources/local_data_source.dart';
 
 class LocaleRepository implements ILocaleRepository {
-  final LocalDataSource localDataSource;
+  final ISettingsLocalDataSource localDataSource;
 
   LocaleRepository({
     required this.localDataSource,

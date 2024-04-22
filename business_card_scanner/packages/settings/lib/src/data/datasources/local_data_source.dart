@@ -3,16 +3,16 @@ import 'dart:ui';
 import 'package:core/errors.dart';
 import 'package:core/secure_storage.dart';
 
-abstract class ILocalDataSource {
+abstract class ISettingsLocalDataSource {
   Future<Locale> getLocale();
 
   Future<void> saveLocale(Locale locale);
 }
 
-class LocalDataSource implements ILocalDataSource {
+class SettingsLocalDataSource implements ISettingsLocalDataSource {
   final FlutterSecureStorage storage;
 
-  LocalDataSource({
+  SettingsLocalDataSource({
     required this.storage,
   });
 
