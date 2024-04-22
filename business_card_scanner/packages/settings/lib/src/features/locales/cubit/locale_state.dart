@@ -21,8 +21,6 @@ final class LocaleLoaded extends LocaleState {
 
 final class LocaleSaving extends LocaleState {}
 
-final class LocaleSaved extends LocaleState {}
-
 final class LocaleError extends LocaleState {
   LocaleError({required this.error});
 
