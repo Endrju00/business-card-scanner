@@ -1,7 +1,10 @@
-import 'package:business_card_scanner/src/presentation/widgets/bcs_container.dart';
 import 'package:core/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:settings/settings.dart';
+
+import '../widgets/bcs_container.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -39,24 +42,37 @@ class HomePage extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
+              Opacity(
+                opacity: 0.7,
+                child: SvgPicture.asset(
+                  'assets/logo.svg',
+                  width: MediaQuery.of(context).size.width * 0.5,
+                ),
+              ),
+              Text(
+                AppLocalizations.of(context)!.appName,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
               const Spacer(),
               BcsButton(
                 onPressed: () => _openBottomSheet(context),
-                text: 'Settings',
+                text: AppLocalizations.of(context)!.settings,
               ),
               BcsButton(
                 onPressed: () {},
-                text: 'Log out',
+                text: AppLocalizations.of(context)!.logOut,
               ),
             ],
           ),
         ),
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('MVP Business Card Scanner'),
+            Text(
+              AppLocalizations.of(context)!.appName,
+            ),
           ],
         ),
       ),
