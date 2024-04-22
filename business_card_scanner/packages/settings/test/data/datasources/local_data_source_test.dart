@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:core/errors.dart';
 import 'package:core/secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -40,6 +42,23 @@ void main() {
       // assert
       expect(() => call(), throwsA(isA<CacheException>()));
       verify(mockFlutterSecureStorage.read(key: LocalDataSource.localeKey));
+    });
+  });
+
+  group('saveLocale', () {
+    test('should save the locale to the secure storage', () async {
+      // arrange
+      when(mockFlutterSecureStorage.write(
+        key: LocalDataSource.localeKey,
+        value: tLanguageCode,
+      )).thenAnswer((_) async {});
+      // act
+      await dataSource.saveLocale(const Locale(tLanguageCode));
+      // assert
+      verify(mockFlutterSecureStorage.write(
+        key: LocalDataSource.localeKey,
+        value: tLanguageCode,
+      ));
     });
   });
 }

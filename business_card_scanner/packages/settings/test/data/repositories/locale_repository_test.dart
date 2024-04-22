@@ -53,4 +53,25 @@ void main() {
       expect(result, equals(Left(UnknownFailure())));
     });
   });
+
+  group('saveLocale', () {
+    test('should save the locale to the local data source', () async {
+      // arrange
+      when(mockLocalDataSource.saveLocale(tLocale)).thenAnswer((_) async {});
+      // act
+      await repository.saveLocale(tLocale);
+      // assert
+      verify(mockLocalDataSource.saveLocale(tLocale));
+    });
+
+    test('should return UnknownFailure when an unknown error occurs', () async {
+      // arrange
+      when(mockLocalDataSource.saveLocale(tLocale)).thenThrow(Exception());
+      // act
+      final result = await repository.saveLocale(tLocale);
+      // assert
+      verify(mockLocalDataSource.saveLocale(tLocale));
+      expect(result, equals(Left(UnknownFailure())));
+    });
+  });
 }
