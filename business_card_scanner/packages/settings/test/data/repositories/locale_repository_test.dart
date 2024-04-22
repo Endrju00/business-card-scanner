@@ -10,13 +10,13 @@ import 'package:settings/src/data/repositories/locale_repository.dart';
 
 import 'locale_repository_test.mocks.dart';
 
-@GenerateMocks([LocalDataSource])
+@GenerateMocks([SettingsLocalDataSource])
 void main() {
   late LocaleRepository repository;
-  late MockLocalDataSource mockLocalDataSource;
+  late MockSettingsLocalDataSource mockLocalDataSource;
 
   setUp(() {
-    mockLocalDataSource = MockLocalDataSource();
+    mockLocalDataSource = MockSettingsLocalDataSource();
     repository = LocaleRepository(localDataSource: mockLocalDataSource);
   });
 

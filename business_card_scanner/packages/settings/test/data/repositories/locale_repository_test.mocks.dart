@@ -44,11 +44,12 @@ class _FakeLocale_1 extends _i1.SmartFake implements _i3.Locale {
         );
 }
 
-/// A class which mocks [LocalDataSource].
+/// A class which mocks [SettingsLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLocalDataSource extends _i1.Mock implements _i4.LocalDataSource {
-  MockLocalDataSource() {
+class MockSettingsLocalDataSource extends _i1.Mock
+    implements _i4.SettingsLocalDataSource {
+  MockSettingsLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
 

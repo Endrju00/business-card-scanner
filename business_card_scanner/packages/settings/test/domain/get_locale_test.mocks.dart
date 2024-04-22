@@ -25,9 +25,9 @@ import 'package:settings/src/data/repositories/locale_repository.dart' as _i4;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeLocalDataSource_0 extends _i1.SmartFake
-    implements _i2.LocalDataSource {
-  _FakeLocalDataSource_0(
+class _FakeISettingsLocalDataSource_0 extends _i1.SmartFake
+    implements _i2.ISettingsLocalDataSource {
+  _FakeISettingsLocalDataSource_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -55,13 +55,13 @@ class MockLocaleRepository extends _i1.Mock implements _i4.LocaleRepository {
   }
 
   @override
-  _i2.LocalDataSource get localDataSource => (super.noSuchMethod(
+  _i2.ISettingsLocalDataSource get localDataSource => (super.noSuchMethod(
         Invocation.getter(#localDataSource),
-        returnValue: _FakeLocalDataSource_0(
+        returnValue: _FakeISettingsLocalDataSource_0(
           this,
           Invocation.getter(#localDataSource),
         ),
-      ) as _i2.LocalDataSource);
+      ) as _i2.ISettingsLocalDataSource);
 
   @override
   _i5.Future<_i3.Either<_i6.Failure, _i7.Locale>> getLocale() =>

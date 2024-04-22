@@ -7,8 +7,7 @@ import 'package:core/usecases.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:settings/src/domain/usecases/locale_usecases.dart';
-import 'package:settings/src/features/locales/cubit/locale_cubit.dart';
+import 'package:settings/settings.dart';
 
 import 'locale_cubit_test.mocks.dart';
 
@@ -46,40 +45,52 @@ void main() {
     );
 
     blocTest(
-      'emits [LocaleLoading, LocaleError] when GetLocale fails',
+      'emits proper states when GetLocale fails, loads default locale and saves it',
       build: () {
-        when(mockGetLocale(NoParams())).thenAnswer(
-          (_) async => Left(CacheFailure()),
-        );
+        when(mockGetLocale(NoParams()))
+            .thenAnswer((_) async => Left(CacheFailure()));
+        when(mockSaveLocale(tLocale))
+            .thenAnswer((_) async => const Right(null));
         return localeCubit;
       },
       act: (cubit) => cubit.loadLocale(),
-      expect: () => [LocaleLoading(), LocaleError(error: CacheFailure())],
+      expect: () => [
+        LocaleLoading(),
+        LocaleError(error: CacheFailure()),
+        LocaleSaving(),
+        LocaleLoaded(locale: tLocale),
+      ],
     );
 
     blocTest(
-      'emits [LocaleLoading, LocaleError] when GetLocale fails with UnknownFailure',
+      'emits proper states when GetLocale fails with UnknownFailure, loads default locale and saves it',
       build: () {
-        when(mockGetLocale(NoParams())).thenAnswer(
-          (_) async => Left(UnknownFailure()),
-        );
+        when(mockGetLocale(NoParams()))
+            .thenAnswer((_) async => Left(UnknownFailure()));
+        when(mockSaveLocale(tLocale))
+            .thenAnswer((_) async => const Right(null));
         return localeCubit;
       },
       act: (cubit) => cubit.loadLocale(),
-      expect: () => [LocaleLoading(), LocaleError(error: UnknownFailure())],
+      expect: () => [
+        LocaleLoading(),
+        LocaleError(error: UnknownFailure()),
+        LocaleSaving(),
+        LocaleLoaded(locale: tLocale),
+      ],
     );
   });
 
   group('cacheLocale', () {
     blocTest(
-      'emits [LocaleSaving, LocaleSaved] when SaveLocale succeeds',
+      'emits [LocaleSaving, LocaleLoaded] when SaveLocale succeeds',
       build: () {
         when(mockSaveLocale(tLocale))
             .thenAnswer((_) async => const Right(null));
         return localeCubit;
       },
       act: (cubit) => cubit.cacheLocale(tLocale),
-      expect: () => [LocaleSaving(), LocaleSaved()],
+      expect: () => [LocaleSaving(), LocaleLoaded(locale: tLocale)],
     );
 
     blocTest(

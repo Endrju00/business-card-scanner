@@ -12,11 +12,11 @@ import 'local_data_source_test.mocks.dart';
 @GenerateMocks([FlutterSecureStorage])
 void main() {
   late MockFlutterSecureStorage mockFlutterSecureStorage;
-  late LocalDataSource dataSource;
+  late SettingsLocalDataSource dataSource;
 
   setUp(() {
     mockFlutterSecureStorage = MockFlutterSecureStorage();
-    dataSource = LocalDataSource(storage: mockFlutterSecureStorage);
+    dataSource = SettingsLocalDataSource(storage: mockFlutterSecureStorage);
   });
 
   const tLanguageCode = 'en';
@@ -24,24 +24,24 @@ void main() {
   group('getLocale', () {
     test('should get locale from the secure storage', () async {
       // arrange
-      when(mockFlutterSecureStorage.read(key: LocalDataSource.localeKey))
+      when(mockFlutterSecureStorage.read(key: SettingsLocalDataSource.localeKey))
           .thenAnswer((_) async => tLanguageCode);
       // act
       final result = await dataSource.getLocale();
       // assert
       expect(result.languageCode, tLanguageCode);
-      verify(mockFlutterSecureStorage.read(key: LocalDataSource.localeKey));
+      verify(mockFlutterSecureStorage.read(key: SettingsLocalDataSource.localeKey));
     });
 
     test('should throw an exception when there is no data saved', () async {
       // arrange
-      when(mockFlutterSecureStorage.read(key: LocalDataSource.localeKey))
+      when(mockFlutterSecureStorage.read(key: SettingsLocalDataSource.localeKey))
           .thenThrow(CacheException());
       // act
       final call = dataSource.getLocale;
       // assert
       expect(() => call(), throwsA(isA<CacheException>()));
-      verify(mockFlutterSecureStorage.read(key: LocalDataSource.localeKey));
+      verify(mockFlutterSecureStorage.read(key: SettingsLocalDataSource.localeKey));
     });
   });
 
@@ -49,14 +49,14 @@ void main() {
     test('should save the locale to the secure storage', () async {
       // arrange
       when(mockFlutterSecureStorage.write(
-        key: LocalDataSource.localeKey,
+        key: SettingsLocalDataSource.localeKey,
         value: tLanguageCode,
       )).thenAnswer((_) async {});
       // act
       await dataSource.saveLocale(const Locale(tLanguageCode));
       // assert
       verify(mockFlutterSecureStorage.write(
-        key: LocalDataSource.localeKey,
+        key: SettingsLocalDataSource.localeKey,
         value: tLanguageCode,
       ));
     });
