@@ -28,6 +28,10 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  core:
+    path: packages/core
+  settings:
+    path: packages/settings
   flutter:
     sdk: flutter
 
