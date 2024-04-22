@@ -28,8 +28,13 @@ class LocaleRepository implements ILocaleRepository {
   }
 
   @override
-  Future<void> saveLocale(Locale locale) async {
-    // TODO: implement saveLocale
-    throw UnimplementedError();
+  Future<Either<Failure, void>> saveLocale(Locale locale) async {
+    try {
+      await localDataSource.saveLocale(locale);
+      return const Right(null);
+    } catch (e) {
+      log(e.toString(), name: 'LocaleRepository');
+      return Left(UnknownFailure());
+    }
   }
 }

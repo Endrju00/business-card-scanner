@@ -26,8 +26,7 @@ class LocalDataSource implements ILocalDataSource {
   }
 
   @override
-  Future<void> saveLocale(Locale locale) {
-    // TODO: implement saveLocale
-    throw UnimplementedError();
+  Future<void> saveLocale(Locale locale) async {
+    return await storage.write(key: localeKey, value: locale.languageCode);
   }
 }
