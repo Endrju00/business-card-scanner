@@ -1,5 +1,6 @@
 import 'package:core/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:settings/settings.dart';
 
 class SettingsSheet extends StatelessWidget {
   const SettingsSheet({
@@ -12,7 +13,11 @@ class SettingsSheet extends StatelessWidget {
       title: 'Settings',
       onClose: () => Navigator.of(context).pop(),
       children: const [
-        Text('Settings go here'),
+        ListTile(
+          contentPadding: EdgeInsets.zero,
+          title: Text('Language'),
+          trailing: LocaleDropdown(),
+        )
       ],
     );
   }

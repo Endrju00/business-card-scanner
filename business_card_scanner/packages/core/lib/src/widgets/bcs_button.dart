@@ -7,7 +7,7 @@ class BcsButton extends StatelessWidget {
 
   const BcsButton({
     super.key,
-    this.padding = const EdgeInsets.all(16),
+    this.padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     required this.text,
     this.onPressed,
   });
