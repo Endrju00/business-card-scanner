@@ -1,0 +1,18 @@
+{
+  "appName": "Business Card Scanner",
+  "@appName": {
+    "description": "Business Card Scanner"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language"
+  },
+  "logOut": "Log out",
+  "@logOut": {
+    "description": "Log out"
+  }
+}
