@@ -1,0 +1,21 @@
+name: business_card_scanner
+packages:
+  - packages/*
+
+scripts:
+  flutter:test:
+    exec: flutter test
+    packageFilters:
+      flutter: true
+      dirExists: test
+
+  test:
+    exec: melos run flutter:test --no-select
+    description: Run all tests for all packages
+
+  generate:
+    exec: dart run build_runner build
+    packageFilters:
+      dependsOn: build_runner
+    description: Generate code for all packages
+    
