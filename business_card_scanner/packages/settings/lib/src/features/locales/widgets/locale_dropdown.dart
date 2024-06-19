@@ -10,7 +10,7 @@ class LocaleDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LocaleCubit, LocaleState>(
       builder: (context, state) {
-        if (state is LocaleSaving) {
+        if (state.status == LocaleStatus.loading) {
           return const CircularProgressIndicator.adaptive();
         }
 
@@ -19,7 +19,7 @@ class LocaleDropdown extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           alignment: Alignment.centerLeft,
           underline: Container(),
-          value: state is LocaleLoaded ? state.locale : const Locale('en'),
+          value: state.locale,
           items: [
             DropdownMenuItem(
               value: const Locale('en'),

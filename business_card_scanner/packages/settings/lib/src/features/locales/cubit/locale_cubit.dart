@@ -16,30 +16,46 @@ class LocaleCubit extends Cubit<LocaleState> {
   LocaleCubit({
     required this.getLocale,
     required this.saveLocale,
-  }) : super(LocaleStarted());
+  }) : super(const LocaleState());
+
+  static const _defaultLocale = Locale('en');
 
   Future<void> _onLocaleError(Failure failure) async {
-    emit(LocaleError(error: failure));
-    const defaultLocale = Locale('en');
-    await cacheLocale(defaultLocale);
+    emit(state.copyWith(
+      status: LocaleStatus.error,
+      locale: _defaultLocale,
+      error: failure,
+    ));
+
+    await cacheLocale(_defaultLocale);
   }
 
   Future<void> loadLocale() async {
-    emit(LocaleLoading());
+    emit(state.copyWith(status: LocaleStatus.loading));
     final result = await getLocale(NoParams());
 
     result.fold(
       (failure) => _onLocaleError(failure),
-      (locale) => emit(LocaleLoaded(locale: locale)),
+      (locale) => emit(state.copyWith(
+        status: LocaleStatus.loaded,
+        locale: locale,
+      )),
     );
   }
 
   Future<void> cacheLocale(Locale locale) async {
-    emit(LocaleSaving());
+    emit(state.copyWith(status: LocaleStatus.saving));
     final result = await saveLocale(locale);
     result.fold(
-      (failure) => emit(LocaleError(error: failure)),
-      (_) => emit(LocaleLoaded(locale: locale)),
+      (failure) => emit(state.copyWith(
+        status: LocaleStatus.error,
+        locale: _defaultLocale,
+        error: failure,
+      )),
+      (_) => emit(state.copyWith(
+        status: LocaleStatus.loaded,
+        locale: locale,
+      )),
     );
   }
 }

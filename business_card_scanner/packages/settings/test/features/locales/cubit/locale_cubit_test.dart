@@ -26,22 +26,28 @@ void main() {
     );
   });
 
-  test('initial state is LocaleStarted', () {
-    expect(localeCubit.state, LocaleStarted());
+  test('initial state status is initial ', () {
+    expect(localeCubit.state.status, LocaleStatus.initial);
   });
 
   const tLocale = Locale('en');
 
   group('loadLocale', () {
     blocTest(
-      'emits [LocaleLoading, LocaleLoaded] when GetLocale succeeds',
+      'emits states with status [loading, loaded] when GetLocale succeeds',
       build: () {
         when(mockGetLocale(NoParams()))
             .thenAnswer((_) async => const Right(tLocale));
         return localeCubit;
       },
       act: (cubit) => cubit.loadLocale(),
-      expect: () => [LocaleLoading(), LocaleLoaded(locale: tLocale)],
+      expect: () => const [
+        LocaleState(status: LocaleStatus.loading),
+        LocaleState(
+          status: LocaleStatus.loaded,
+          locale: tLocale,
+        ),
+      ],
     );
 
     blocTest(
@@ -55,10 +61,17 @@ void main() {
       },
       act: (cubit) => cubit.loadLocale(),
       expect: () => [
-        LocaleLoading(),
-        LocaleError(error: CacheFailure()),
-        LocaleSaving(),
-        LocaleLoaded(locale: tLocale),
+        const LocaleState(status: LocaleStatus.loading),
+        LocaleState(
+          status: LocaleStatus.error,
+          locale: tLocale,
+          error: CacheFailure(),
+        ),
+        const LocaleState(status: LocaleStatus.saving),
+        const LocaleState(
+          status: LocaleStatus.loaded,
+          locale: tLocale,
+        ),
       ],
     );
 
@@ -73,10 +86,17 @@ void main() {
       },
       act: (cubit) => cubit.loadLocale(),
       expect: () => [
-        LocaleLoading(),
-        LocaleError(error: UnknownFailure()),
-        LocaleSaving(),
-        LocaleLoaded(locale: tLocale),
+        const LocaleState(status: LocaleStatus.loading),
+        LocaleState(
+          status: LocaleStatus.error,
+          locale: tLocale,
+          error: CacheFailure(),
+        ),
+        const LocaleState(status: LocaleStatus.saving),
+        const LocaleState(
+          status: LocaleStatus.loaded,
+          locale: tLocale,
+        ),
       ],
     );
   });
@@ -90,7 +110,13 @@ void main() {
         return localeCubit;
       },
       act: (cubit) => cubit.cacheLocale(tLocale),
-      expect: () => [LocaleSaving(), LocaleLoaded(locale: tLocale)],
+      expect: () => const [
+        LocaleState(status: LocaleStatus.saving),
+        LocaleState(
+          status: LocaleStatus.loaded,
+          locale: tLocale,
+        ),
+      ],
     );
 
     blocTest(
@@ -102,7 +128,14 @@ void main() {
         return localeCubit;
       },
       act: (cubit) => cubit.cacheLocale(tLocale),
-      expect: () => [LocaleSaving(), LocaleError(error: UnknownFailure())],
+      expect: () => [
+        const LocaleState(status: LocaleStatus.saving),
+        LocaleState(
+          status: LocaleStatus.error,
+          locale: tLocale,
+          error: UnknownFailure(),
+        ),
+      ],
     );
   });
 }

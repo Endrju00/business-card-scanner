@@ -3,25 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:settings/settings.dart';
 
 import '../l10n/app_l10n.dart';
+import 'injection_container.dart';
 import 'presentation/pages/splash_screen.dart';
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LocaleCubit>(
+          create: (BuildContext context) => LocaleCubit(
+            getLocale: getIt(),
+            saveLocale: getIt(),
+          )..loadLocale(),
+        ),
+      ],
+      child: const AppView(),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
-  void _initLocale() async {
-    await context.read<LocaleCubit>().loadLocale();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _initLocale();
-  }
+class AppView extends StatelessWidget {
+  const AppView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +37,7 @@ class _MyAppState extends State<MyApp> {
         title: 'Business Card Scanner',
         localizationsDelegates: AppL10n.localizationsDelegates,
         supportedLocales: AppL10n.supportedLocales,
-        locale: state is LocaleLoaded ? state.locale : const Locale('en'),
+        locale: state.locale,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF3F37C9)),
           useMaterial3: true,
