@@ -1,5 +1,6 @@
 import 'package:core/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:settings/l10n/settings_localizations.dart';
 import 'package:settings/src/features/locales/cubit/locale_cubit.dart';
 
 class LocaleDropdown extends StatelessWidget {
@@ -19,14 +20,14 @@ class LocaleDropdown extends StatelessWidget {
           alignment: Alignment.centerLeft,
           underline: Container(),
           value: state is LocaleLoaded ? state.locale : const Locale('en'),
-          items: const [
+          items: [
             DropdownMenuItem(
-              value: Locale('en'),
-              child: Text('English'),
+              value: const Locale('en'),
+              child: Text(SettingsLocalizations.of(context).english),
             ),
             DropdownMenuItem(
-              value: Locale('pl'),
-              child: Text('Polish'),
+              value: const Locale('pl'),
+              child: Text(SettingsLocalizations.of(context).polish),
             ),
           ],
           onChanged: (value) async {

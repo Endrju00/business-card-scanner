@@ -1,8 +1,8 @@
 import 'package:core/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:settings/settings.dart';
 
+import '../l10n/app_l10n.dart';
 import 'presentation/pages/splash_screen.dart';
 
 class MyApp extends StatefulWidget {
@@ -28,8 +28,8 @@ class _MyAppState extends State<MyApp> {
     return BlocBuilder<LocaleCubit, LocaleState>(builder: (context, state) {
       return MaterialApp(
         title: 'Business Card Scanner',
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
+        localizationsDelegates: AppL10n.localizationsDelegates,
+        supportedLocales: AppL10n.supportedLocales,
         locale: state is LocaleLoaded ? state.locale : const Locale('en'),
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF3F37C9)),

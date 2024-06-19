@@ -7,10 +7,6 @@
   "@settings": {
     "description": "Settings"
   },
-  "language": "Language",
-  "@language": {
-    "description": "Language"
-  },
   "logOut": "Log out",
   "@logOut": {
     "description": "Log out"

@@ -1,0 +1,14 @@
+{
+  "language": "Language",
+  "@language": {
+    "description": "Language"
+  },
+  "polish": "Polish",
+  "@polish": {
+    "description": "Polish"
+  },
+  "english": "English",
+  "@english": {
+    "description": "English"
+  }
+}
