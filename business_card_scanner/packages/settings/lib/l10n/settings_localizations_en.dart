@@ -12,4 +12,7 @@ class SettingsLocalizationsEn extends SettingsLocalizations {
 
   @override
   String get english => 'English';
+
+  @override
+  String get settings => 'Settings';
 }

@@ -110,6 +110,12 @@ abstract class SettingsLocalizations {
   /// In en, this message translates to:
   /// **'English'**
   String get english;
+
+  /// Settings
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
 }
 
 class _SettingsLocalizationsDelegate extends LocalizationsDelegate<SettingsLocalizations> {

@@ -10,5 +10,9 @@
   "english": "English",
   "@english": {
     "description": "English"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings"
   }
 }

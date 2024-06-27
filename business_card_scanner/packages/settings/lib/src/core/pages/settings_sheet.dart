@@ -11,7 +11,7 @@ class SettingsSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BcsBottomSheet(
-      title: 'Settings',
+      title: SettingsLocalizations.of(context).settings,
       onClose: () => Navigator.of(context).pop(),
       children: [
         ListTile(

@@ -12,4 +12,7 @@ class SettingsLocalizationsPl extends SettingsLocalizations {
 
   @override
   String get english => 'angielski';
+
+  @override
+  String get settings => 'Ustawienia';
 }
