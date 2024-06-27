@@ -12,7 +12,6 @@ void setup() {
 void _setupSettings() {
   // Use cases
   getIt.registerLazySingleton(() => GetLocale(getIt()));
-
   getIt.registerLazySingleton(() => SaveLocale(getIt()));
 
   // Repositories

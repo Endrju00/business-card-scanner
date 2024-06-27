@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:settings/settings.dart';
 
 import '../l10n/app_l10n.dart';
-import 'injection_container.dart';
+import '../injection_container.dart';
 import 'presentation/pages/splash_screen.dart';
 
 class App extends StatelessWidget {
