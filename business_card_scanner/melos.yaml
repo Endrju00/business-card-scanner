@@ -14,7 +14,7 @@ scripts:
     description: Run all tests for all packages
 
   generate:
-    exec: dart run build_runner build
+    exec: dart run build_runner build --delete-conflicting-outputs
     packageFilters:
       dependsOn: build_runner
     description: Generate code for all packages
