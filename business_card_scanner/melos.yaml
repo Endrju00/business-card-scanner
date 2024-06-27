@@ -18,4 +18,10 @@ scripts:
     packageFilters:
       dependsOn: build_runner
     description: Generate code for all packages
-    
+  
+  l10n:
+    exec: flutter gen-l10n
+    packageFilters:
+      flutter: true
+      dirExists: lib/l10n
+    description: Generate localization files for all packages
