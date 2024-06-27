@@ -1,31 +1,30 @@
 part of 'locale_cubit.dart';
 
-@immutable
-sealed class LocaleState extends Equatable {
-  @override
-  List<Object?> get props => [];
-}
+enum LocaleStatus { initial, loading, saving, loaded, error }
 
-final class LocaleStarted extends LocaleState {}
-
-final class LocaleLoading extends LocaleState {}
-
-final class LocaleLoaded extends LocaleState {
-  LocaleLoaded({required this.locale});
-
+class LocaleState extends Equatable {
+  final LocaleStatus status;
   final Locale locale;
+  final Failure? error;
+
+  const LocaleState({
+    this.status = LocaleStatus.initial,
+    this.locale = const Locale('en'),
+    this.error,
+  });
 
   @override
-  List<Object?> get props => [locale];
-}
+  List<Object?> get props => [status, locale];
 
-final class LocaleSaving extends LocaleState {}
-
-final class LocaleError extends LocaleState {
-  LocaleError({required this.error});
-
-  final Failure error;
-
-  @override
-  List<Object?> get props => [error];
+  LocaleState copyWith({
+    LocaleStatus? status,
+    Locale? locale,
+    Failure? error,
+  }) {
+    return LocaleState(
+      status: status ?? this.status,
+      locale: locale ?? this.locale,
+      error: error,
+    );
+  }
 }

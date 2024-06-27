@@ -1,5 +1,6 @@
 import 'package:core/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:settings/l10n/settings_localizations.dart';
 import 'package:settings/settings.dart';
 
 class SettingsSheet extends StatelessWidget {
@@ -10,13 +11,13 @@ class SettingsSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BcsBottomSheet(
-      title: 'Settings',
+      title: SettingsLocalizations.of(context).settings,
       onClose: () => Navigator.of(context).pop(),
-      children: const [
+      children: [
         ListTile(
           contentPadding: EdgeInsets.zero,
-          title: Text('Language'),
-          trailing: LocaleDropdown(),
+          title: Text(SettingsLocalizations.of(context).language),
+          trailing: const LocaleDropdown(),
         )
       ],
     );
