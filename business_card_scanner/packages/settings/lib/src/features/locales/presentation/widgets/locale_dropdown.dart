@@ -1,7 +1,7 @@
 import 'package:core/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:settings/l10n/settings_localizations.dart';
-import 'package:settings/src/features/locales/cubit/locale_cubit.dart';
+import 'package:settings/src/features/locales/presentation/cubit/locale_cubit.dart';
 
 class LocaleDropdown extends StatelessWidget {
   const LocaleDropdown({super.key});
