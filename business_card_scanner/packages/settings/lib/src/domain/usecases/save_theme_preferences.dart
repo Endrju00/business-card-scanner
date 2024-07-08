@@ -5,20 +5,20 @@ import 'package:core/usecases.dart';
 import '../entities/entities.dart';
 import '../repositories/theme_repository_interface.dart';
 
-class ChangeThemeMode extends UseCase<void, ChangeThemeModeParams> {
+class SaveThemePreferences extends UseCase<void, SaveThemePreferencesParams> {
   final IThemeRepository repository;
 
-  ChangeThemeMode(this.repository);
+  SaveThemePreferences(this.repository);
 
   @override
-  Future<Either<Failure, void>> call(ChangeThemeModeParams params) async {
+  Future<Either<Failure, void>> call(SaveThemePreferencesParams params) async {
     return await repository.updateThemePreferences(
         ThemePreferences(isDarkMode: params.isDarkMode));
   }
 }
 
-class ChangeThemeModeParams {
+class SaveThemePreferencesParams {
   final bool isDarkMode;
 
-  ChangeThemeModeParams({required this.isDarkMode});
+  SaveThemePreferencesParams({required this.isDarkMode});
 }

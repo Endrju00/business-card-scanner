@@ -6,16 +6,17 @@ import 'package:settings/src/data/repositories/theme_repository.dart';
 import 'package:settings/src/domain/domain.dart';
 import 'package:settings/src/domain/entities/entities.dart';
 
-import 'change_theme_mode_test.mocks.dart';
+import 'save_theme_mode_test.mocks.dart';
+
 
 @GenerateMocks([ThemeRepository])
 void main() {
-  late ChangeThemeMode usecase;
+  late SaveThemePreferences usecase;
   late MockThemeRepository mockThemeRepository;
 
   setUp(() {
     mockThemeRepository = MockThemeRepository();
-    usecase = ChangeThemeMode(mockThemeRepository);
+    usecase = SaveThemePreferences(mockThemeRepository);
   });
 
   const tThemePreferences = ThemePreferences(isDarkMode: true);
@@ -25,7 +26,7 @@ void main() {
     when(mockThemeRepository.updateThemePreferences(tThemePreferences))
         .thenAnswer((_) async => const Right(null));
     // act
-    final result = await usecase(ChangeThemeModeParams(isDarkMode: true));
+    final result = await usecase(SaveThemePreferencesParams(isDarkMode: true));
     // assert
     expect(result, const Right(null));
     verify(mockThemeRepository.updateThemePreferences(tThemePreferences));
