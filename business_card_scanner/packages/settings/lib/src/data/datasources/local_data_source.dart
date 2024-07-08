@@ -50,7 +50,11 @@ class SettingsLocalDataSource implements ISettingsLocalDataSource {
   Future<void> saveThemePreferences(
     ThemePreferencesModel themePreferences,
   ) async {
-    return await storage.write(
-        key: themeKey, value: json.encode(themePreferences.toJson()));
+    try {
+      return await storage.write(
+          key: themeKey, value: json.encode(themePreferences.toJson()));
+    } catch (e) {
+      throw CacheException();
+    }
   }
 }
